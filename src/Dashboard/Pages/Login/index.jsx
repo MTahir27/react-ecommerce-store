@@ -15,7 +15,6 @@ export const AdminLogin = () => {
     if (email && password) {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          // const user = userCredential.user;
           navigate("/");
         })
         .catch((error) => {

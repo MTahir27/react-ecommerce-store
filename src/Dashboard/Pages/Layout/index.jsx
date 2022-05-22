@@ -1,9 +1,42 @@
-import React, { useState } from "react";
-import { Outlet, Link } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import { AuthContext } from "../../../Context/AuthContext";
+import { auth } from "../../../Config/firebase";
+import { signOut } from "firebase/auth";
+import { toast } from "react-toastify";
 
 export const AdminLayout = () => {
-  const [authStatus, setAuthStatus] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const user = useContext(AuthContext);
+  const [authStatus, setAuthStatus] = useState();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user.uid) {
+      setAuthStatus(true);
+    } else {
+      setAuthStatus(false);
+    }
+    setIsLoading(false);
+  }, [user]);
+
+  const logout = (e) => {
+    signOut(auth)
+      .then(() => {
+        navigate("/adminlogin");
+      })
+      .catch((error) => {
+        toast.danger(error, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+  };
   return (
     <>
       <Navbar bg="light" className="navbar">
@@ -22,22 +55,13 @@ export const AdminLayout = () => {
                   variant="link"
                   type="button"
                   className="text-decoration-none text-color"
-                  // onClick={logout}
+                  onClick={logout}
                 >
                   Logout
                 </Button>
               </Nav>
             ) : (
               <Nav className="ms-auto my-2 my-lg-0 gap-3">
-                <Link to={"/SignUp"}>
-                  <Button
-                    variant="primary"
-                    type="button"
-                    className="text-uppercase"
-                  >
-                    SignUp
-                  </Button>
-                </Link>
                 <Link to={"/login"}>
                   <Button
                     variant="primary"
