@@ -1,11 +1,44 @@
-import React, { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Container, Navbar, Nav, Button, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
+import { AuthContext } from "../../Context/AuthContext";
+import { auth } from "../../Config/firebase";
+import { signOut } from "firebase/auth";
+import { toast } from "react-toastify";
 
 export const Layout = () => {
-  const [authStatus, setAuthStatus] = useState(false);
+  const user = useContext(AuthContext);
+  const [authStatus, setAuthStatus] = useState();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user.uid) {
+      setAuthStatus(true);
+      console.log(user);
+    } else {
+      setAuthStatus(false);
+    }
+  }, [user]);
+
+  const logout = (e) => {
+    console.log(e.currentTarget);
+    signOut(auth)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.danger(error, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+  };
 
   return (
     <>
@@ -29,6 +62,7 @@ export const Layout = () => {
                   variant="link"
                   type="button"
                   className="text-decoration-none text-color"
+                  onClick={logout}
                 >
                   Logout
                 </Button>

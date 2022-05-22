@@ -15,7 +15,6 @@ export const SignUp = () => {
     if (email && password) {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          const user = userCredential.user;
           toast.success("Account Successfully Created", {
             position: "top-right",
             autoClose: 5000,

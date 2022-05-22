@@ -9,6 +9,7 @@ import { SignUp } from "./Pages/Register";
 import { Login } from "./Pages/Login";
 import { ERROR_404 } from "./Pages/ERROR_404";
 import { ForgetPassword } from "./Pages/ForgetPassword";
+import AuthContextProvider from "./Context/AuthContext";
 
 function App() {
   useEffect(() => {
@@ -21,18 +22,20 @@ function App() {
 
   return (
     <>
-      <ToastContainer />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-          </Route>
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/forgetpassword" element={<ForgetPassword />} />
-          <Route path="/*" element={<ERROR_404 />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthContextProvider>
+        <ToastContainer />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+            </Route>
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forgetpassword" element={<ForgetPassword />} />
+            <Route path="/*" element={<ERROR_404 />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthContextProvider>
     </>
   );
 }
