@@ -13,23 +13,35 @@ export const AdminLogin = () => {
   const AdminLogin = (e) => {
     e.preventDefault();
     if (email && password) {
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          navigate("/dashboard");
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          toast.error((errorCode, errorMessage), {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
+      if (email === "superadmin@gmail.com") {
+        signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            navigate("/dashboard");
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            toast.error((errorCode, errorMessage), {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
           });
+      } else {
+        toast.error("Email Not Found", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
         });
+      }
     } else if (email && !password) {
       toast.error("Enter Password", {
         position: "top-right",

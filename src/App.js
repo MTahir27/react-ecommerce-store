@@ -14,6 +14,7 @@ import { Checkout } from "./Pages/Checkout";
 import { AdminLogin } from "./Dashboard/Pages/Login";
 import { Dashboard } from "./Dashboard/Pages/Dashboard";
 import { AdminLayout } from "./Dashboard/Pages/Layout";
+import { AddProduct } from "./Dashboard/Pages/AddProduct";
 
 function App() {
   useEffect(() => {
@@ -40,6 +41,9 @@ function App() {
             <Route path="/*" element={<ERROR_404 />} />
             <Route path="/dashboard" element={<AdminLayout />}>
               <Route index element={<Dashboard />} />
+            </Route>
+            <Route path="/addproduct" element={<AdminLayout />}>
+              <Route index element={<AddProduct />} />
             </Route>
             <Route path="/adminlogin" element={<AdminLogin />} />
           </Routes>

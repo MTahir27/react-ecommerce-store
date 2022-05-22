@@ -42,13 +42,13 @@ export const AdminLayout = () => {
       <Navbar bg="light" className="navbar">
         <Container>
           <Navbar.Brand>
-            <Link to={"/"}>Admin Dashboard</Link>
+            <Link to={"/dashboard"}>Admin Dashboard</Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             {authStatus === true ? (
               <Nav className="ms-auto my-2 my-lg-0 gap-3 align-items-center">
-                <Link to={"/products"} className="paragraph">
+                <Link to={"/addproduct"} className="paragraph">
                   Add Products
                 </Link>
                 <Button
