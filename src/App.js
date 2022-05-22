@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./App.scss";
 import WebFont from "webfontloader";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -24,32 +24,25 @@ function App() {
     });
   }, []);
 
-  const [authUser, setAuthUser] = useState("admin");
-
   return (
     <>
       <AuthContextProvider>
         <ToastContainer />
         <BrowserRouter>
-          {authUser === "user" ? (
-            <Routes>
-              <Route path="/" element={<Layout />}>
-                <Route index element={<Home />} />
-                <Route path="/checkout" element={<Checkout />} />
-              </Route>
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/forgetpassword" element={<ForgetPassword />} />
-              <Route path="/*" element={<ERROR_404 />} />
-            </Routes>
-          ) : (
-            <Routes>
-              <Route path="/" element={<AdminLayout />}>
-                <Route index element={<Dashboard />} />
-              </Route>
-              <Route path="/adminlogin" element={<AdminLogin />} />
-            </Routes>
-          )}
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="/checkout" element={<Checkout />} />
+            </Route>
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forgetpassword" element={<ForgetPassword />} />
+            <Route path="/*" element={<ERROR_404 />} />
+            <Route path="/dashboard" element={<AdminLayout />}>
+              <Route index element={<Dashboard />} />
+            </Route>
+            <Route path="/adminlogin" element={<AdminLogin />} />
+          </Routes>
         </BrowserRouter>
       </AuthContextProvider>
     </>

@@ -5,6 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 export const AuthContext = createContext({});
 
 export default function AuthContextProvider(props) {
+  const [Authentication, setauthentication] = useState("user");
   const [user, setUser] = useState({});
   onAuthStateChanged(auth, (user) => {
     if (user) {

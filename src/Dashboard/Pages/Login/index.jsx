@@ -15,7 +15,7 @@ export const AdminLogin = () => {
     if (email && password) {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          navigate("/");
+          navigate("/dashboard");
         })
         .catch((error) => {
           const errorCode = error.code;
