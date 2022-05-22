@@ -54,6 +54,10 @@ a {
     max-width: 350px;
 }
 
+.min-w-50px {
+    min-width: 50px;
+}
+
 // Height
 .mh-100 {
     min-height: 100vh;
@@ -91,5 +95,3 @@ a {
 body {
     font-family: "Outfit", "sans-serif";
 }
-
-// Navbar Styling

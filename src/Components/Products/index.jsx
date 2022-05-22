@@ -6,7 +6,7 @@ export const ProductCard = (props) => {
     <div className="border rounded-3 shadow-sm mx-350px mx-auto">
       <img
         src={props.imgUrl}
-        alt="Profile Image"
+        alt={props.name}
         className="img-fluid border-bottom ratio-1x1 img-fit-cover img-position-center"
         loading="lazy"
       />
