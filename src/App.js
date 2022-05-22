@@ -10,6 +10,7 @@ import { Login } from "./Pages/Login";
 import { ERROR_404 } from "./Pages/ERROR_404";
 import { ForgetPassword } from "./Pages/ForgetPassword";
 import AuthContextProvider from "./Context/AuthContext";
+import { Checkout } from "./Pages/Checkout";
 
 function App() {
   useEffect(() => {
@@ -28,6 +29,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
+              <Route path="/checkout" element={<Checkout />} />
             </Route>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />

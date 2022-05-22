@@ -8,6 +8,7 @@ export const ProductCard = (props) => {
         src={props.imgUrl}
         alt="Profile Image"
         className="img-fluid border-bottom ratio-1x1 img-fit-cover img-position-center"
+        loading="lazy"
       />
       <div className="p-3">
         <h4 className="mb-2">{props.name}</h4>
