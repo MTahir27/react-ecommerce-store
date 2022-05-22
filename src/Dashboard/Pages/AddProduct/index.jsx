@@ -6,7 +6,6 @@ import { firestore, storage } from "../../../Config/firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { toast } from "react-toastify";
 import { collection, addDoc } from "firebase/firestore/lite";
-import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 export const AddProduct = () => {
   const [title, setTitle] = useState("");
