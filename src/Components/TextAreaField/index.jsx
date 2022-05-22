@@ -7,6 +7,7 @@ export const TextAreaField = (props) => {
       <Form.Control
         as="textarea"
         placeholder={props.placeholder}
+        value={props.value}
         style={{ height: "100px" }}
       />
     </FloatingLabel>

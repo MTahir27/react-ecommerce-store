@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Row, Col, Button, Form, FloatingLabel } from "react-bootstrap";
 import { InputField } from "../../../Components/InputField";
 import { TextAreaField } from "../../../Components/TextAreaField";
-import { storage } from "../../../Config/firebase";
+import { firestore, storage } from "../../../Config/firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { toast } from "react-toastify";
+import { collection, addDoc } from "firebase/firestore/lite";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 export const AddProduct = () => {
   const [title, setTitle] = useState("");
@@ -17,6 +19,7 @@ export const AddProduct = () => {
 
   const uploadImage = (e) => {
     let file = e.target.files[0];
+    if (!file) return;
     const fileRef = ref(storage, "images/products/" + file.name);
     const uploadTask = uploadBytesResumable(fileRef, file);
     uploadTask.on(
@@ -45,7 +48,51 @@ export const AddProduct = () => {
       }
     );
   };
-  const uploadProduct = (e) => {};
+
+  const uploadProduct = async (e) => {
+    e.preventDefault();
+    if ((title, price, stock, catagory, image)) {
+      try {
+        const docRef = await addDoc(collection(firestore, "Products"), {
+          title,
+          price,
+          stock,
+          catagory,
+          description,
+          image,
+        });
+        toast.success("Product Add Successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } catch (e) {
+        toast.error(e, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } else {
+      toast.error("Fill All Field", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
   return (
     <div className="container">
       <section className="d-flex justify-content-center align-item-center py-5">
@@ -81,6 +128,7 @@ export const AddProduct = () => {
                       <option value="watches">Watches</option>
                       <option value="clothing">Clothing</option>
                       <option value="shoes">Shoes</option>
+                      <option value="furniture">Furniture</option>
                     </Form.Select>
                   </FloatingLabel>
                 </Col>
@@ -137,13 +185,24 @@ export const AddProduct = () => {
                 </Col>
 
                 <Col xs={12}>
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    className="w-100 py-2 text-uppercase fw-bold"
-                  >
-                    Add Product
-                  </Button>
+                  {!image ? (
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      className="w-100 py-2 text-uppercase fw-bold"
+                      disabled
+                    >
+                      Add Product
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      className="w-100 py-2 text-uppercase fw-bold"
+                    >
+                      Add Product
+                    </Button>
+                  )}
                 </Col>
               </Row>
             </Form>
