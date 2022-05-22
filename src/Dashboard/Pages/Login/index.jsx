@@ -32,7 +32,7 @@ export const AdminLogin = () => {
             });
           });
       } else {
-        toast.error("Email Not Found", {
+        toast.error("Invalid User", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
