@@ -44,9 +44,48 @@ a {
     color: $text-color;
 }
 
+// Z-index
+.z-index-10 {
+    z-index: 10;
+}
+
+// Width
+.mx-350px {
+    max-width: 350px;
+}
+
 // Height
 .mh-100 {
     min-height: 100vh;
+}
+
+// Line 3
+.text-line-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// Image Styling
+.ratio-1x1 {
+    aspect-ratio: 1/1;
+}
+
+.img-fit-cover {
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.img-fit-contain {
+    -o-object-fit: contain;
+    object-fit: contain;
+}
+
+.img-position-center {
+    -o-object-position: center;
+    object-position: center;
 }
 
 body {
