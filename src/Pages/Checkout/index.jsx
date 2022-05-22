@@ -7,7 +7,7 @@ export const Checkout = () => {
   return (
     <div className="my-5">
       <Container>
-        <Table bordered className="align-middle">
+        <Table responsive bordered className="align-middle">
           <thead>
             <tr>
               <th>Sr No</th>
