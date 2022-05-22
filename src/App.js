@@ -2,9 +2,13 @@ import { useEffect } from "react";
 import "./App.scss";
 import WebFont from "webfontloader";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { Home } from "./Pages/Home";
-import { Error_404 } from "./Pages/Error_404";
 import { Layout } from "./Pages/Layout";
+import { SignUp } from "./Pages/Register";
+import { Login } from "./Pages/Login";
+import { ERROR_404 } from "./Pages/ERROR_404";
+import { ForgetPassword } from "./Pages/ForgetPassword";
 
 function App() {
   useEffect(() => {
@@ -14,15 +18,22 @@ function App() {
       },
     });
   }, []);
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-        </Route>
-        <Route path="/*" element={<Error_404 />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <ToastContainer />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+          </Route>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgetpassword" element={<ForgetPassword />} />
+          <Route path="/*" element={<ERROR_404 />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

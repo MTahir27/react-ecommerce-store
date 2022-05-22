@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 
 export const Layout = () => {
-  const [authStatus, setAuthStatus] = useState(true);
+  const [authStatus, setAuthStatus] = useState(false);
 
   return (
     <>

@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const Error_404 = () => {
+export const ERROR_404 = () => {
   return (
     <div className="bg-light">
       <Container>
